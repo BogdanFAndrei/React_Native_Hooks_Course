@@ -5,6 +5,7 @@ This repository contains examples and notes from a React Native course from Udem
 ## Course Progress Notes
 
 ### Section Progress
+
 - [x] Section 1-4: Completed
   - Basic Component Structure
   - Navigation Setup
@@ -15,14 +16,53 @@ This repository contains examples and notes from a React Native course from Udem
   - Props System Implementation
   - Component Reuse Patterns
   - Image Display and Props
+  - Multiple Props Communication
 
 ### Latest Changes (Date: Current)
-- Implemented ImageScreen with reusable ImageDetail components
-- Created parent-child component relationship
-- Demonstrated props system with image components
-- Set up component communication patterns
+
+- Added score prop to demonstrate multiple props passing
+- Set up Prettier for consistent code formatting
+- Previous accomplishments:
+  - Implemented ImageScreen with reusable ImageDetail components
+  - Created parent-child component relationship
+  - Demonstrated props system with image components
+
+### Props Examples
+```javascript
+// Parent Component (ImageScreen)
+<ImageDetail 
+    title="Forest"
+    imageSource={require('../../assets/forest.jpg')}
+    score={9}
+/>
+
+// Child Component (ImageDetail)
+const ImageDetail = props => {
+    return (
+        <View>
+            <Image source={props.imageSource} />
+            <Text>{props.title}</Text>
+            <Text>Image Score - {props.score}</Text>
+        </View>
+    );
+};
+```
+
+### Code Formatting Setup
+- Added Prettier for consistent code style
+- Configuration in `.prettierrc`:
+  ```json
+  {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5"
+  }
+  ```
+- Format command: `npm run format`
 
 ### Next Topics
+
 - [ ] Section 6: State Management
 - [ ] Section 7: How to Handle Screen Layout
 - [ ] Section 8: Restaurant Search App
@@ -44,15 +84,18 @@ npm start
 ## React Component Structure
 
 ### 1. Basic Component Structure
+
 A React Native component consists of four main parts:
 
 1. **Import Libraries**
+
    ```javascript
-   import React from "react";
-   import { Text, StyleSheet, View } from "react-native";
+   import React from 'react';
+   import { Text, StyleSheet, View } from 'react-native';
    ```
 
 2. **Create Component**
+
    ```javascript
    const MyComponent = () => {
      return <Text>Some JSX content</Text>;
@@ -60,11 +103,12 @@ A React Native component consists of four main parts:
    ```
 
 3. **Create StyleSheet**
+
    ```javascript
    const styles = StyleSheet.create({
      text: {
-       fontSize: 30
-     }
+       fontSize: 30,
+     },
    });
    ```
 
@@ -74,6 +118,7 @@ A React Native component consists of four main parts:
    ```
 
 ### 2. Primitive Elements
+
 - **Text**: Displays text content (required for any text display)
 - **View**: Container for grouping elements (similar to div)
 - **Image**: Displays images
@@ -93,39 +138,41 @@ A React Native component consists of four main parts:
 ## List Building with FlatList
 
 ### FlatList Component
+
 - Efficiently renders scrollable lists
 - Required props:
   - `data`: Array of data to render
   - `renderItem`: Function to render each item
 
 ```javascript
-<FlatList 
-    data={arrayOfData}
-    renderItem={({item}) => <Text>{item.name}</Text>}
-    keyExtractor={(item) => item.id}
-    showsHorizontalScrollIndicator={false}
+<FlatList
+  data={arrayOfData}
+  renderItem={({ item }) => <Text>{item.name}</Text>}
+  keyExtractor={item => item.id}
+  showsHorizontalScrollIndicator={false}
 />
 ```
 
 ### Key Properties
+
 Two ways to handle keys:
+
 1. Add key property directly to data
 2. Use `keyExtractor` prop (preferred method)
 
 ## Navigation
 
 ### Navigation Setup
+
 - Uses 'react-navigation' library
 - Configured in App.js using StackNavigator
 
 ### Navigation Components
 
 1. **Button**
+
    ```javascript
-   <Button 
-     title="Go to Components Demo"
-     onPress={() => navigation.navigate('Components')}
-   />
+   <Button title="Go to Components Demo" onPress={() => navigation.navigate('Components')} />
    ```
 
 2. **TouchableOpacity**
@@ -136,10 +183,12 @@ Two ways to handle keys:
    ```
 
 Key differences:
+
 - Button: Simple, pre-styled component
 - TouchableOpacity: More customizable, can wrap any elements
 
 ## Project Structure
+
 ```
 src/
   ├── screens/
@@ -151,30 +200,31 @@ App.js
 ```
 
 ## Navigation Flow
+
 - App starts at the Home screen (configured in App.js)
 - Navigation between screens using the `navigation.navigate()` method
 - Automatic back button provided by React Navigation
 
 ## Styling
+
 - Uses StyleSheet.create() for style validation
 - Supports flexbox for layout
 - Margins and padding follow standard CSS-like properties
-- Styles can be applied directly or through StyleSheet objects 
+- Styles can be applied directly or through StyleSheet objects
 
 ## Building Reusable Components
 
 ### Parent-Child Component Pattern
+
 1. **Parent Component (ImageScreen)**
+
    ```javascript
-   import ImageDetail from "../components/ImageDetail";
-   
+   import ImageDetail from '../components/ImageDetail';
+
    const ImageScreen = () => {
      return (
        <View>
-         <ImageDetail 
-           title="Forest" 
-           imageSource={require("../../assets/forest.jpg")} 
-         />
+         <ImageDetail title="Forest" imageSource={require('../../assets/forest.jpg')} />
          {/* More ImageDetail components */}
        </View>
      );
@@ -193,6 +243,7 @@ App.js
    ```
 
 ### Props System
+
 - **Props**: System for passing data from a parent to child
 - **Key Concepts**:
   - Props are one-way communication (parent → child)
@@ -201,12 +252,15 @@ App.js
   - Props are used for component configuration
 
 ### Component Reuse Benefits
+
 1. **DRY (Don't Repeat Yourself)**
+
    - Create component once, use it multiple times
    - Consistent styling and behavior
    - Easier maintenance
 
 2. **Configuration through Props**
+
    - Same component structure
    - Different content/data
    - Flexible and adaptable
@@ -214,4 +268,4 @@ App.js
 3. **Maintainability**
    - Changes in one place affect all instances
    - Consistent behavior across the app
-   - Easier testing and debugging 
+   - Easier testing and debugging
