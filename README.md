@@ -28,27 +28,25 @@ This repository contains examples and notes from a React Native course from Udem
   - Demonstrated props system with image components
 
 ### Props Examples
+
 ```javascript
 // Parent Component (ImageScreen)
-<ImageDetail 
-    title="Forest"
-    imageSource={require('../../assets/forest.jpg')}
-    score={9}
-/>
+<ImageDetail title="Forest" imageSource={require('../../assets/forest.jpg')} score={9} />;
 
 // Child Component (ImageDetail)
 const ImageDetail = props => {
-    return (
-        <View>
-            <Image source={props.imageSource} />
-            <Text>{props.title}</Text>
-            <Text>Image Score - {props.score}</Text>
-        </View>
-    );
+  return (
+    <View>
+      <Image source={props.imageSource} />
+      <Text>{props.title}</Text>
+      <Text>Image Score - {props.score}</Text>
+    </View>
+  );
 };
 ```
 
 ### Code Formatting Setup
+
 - Added Prettier for consistent code style
 - Configuration in `.prettierrc`:
   ```json
