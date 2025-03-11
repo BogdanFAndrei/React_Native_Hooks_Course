@@ -10,15 +10,19 @@ This repository contains examples and notes from a React Native course from Udem
   - Navigation Setup
   - List Building
   - Button & TouchableOpacity Components
+- [🔄] Section 5: Building Reusable Components (In Progress)
+  - Understanding Parent-Child Relationships
+  - Props System Implementation
+  - Component Reuse Patterns
+  - Image Display and Props
 
 ### Latest Changes (Date: Current)
-- Implemented basic navigation between screens
-- Created HomeScreen with navigation buttons
-- Built a list demo using FlatList
-- Added comprehensive documentation
+- Implemented ImageScreen with reusable ImageDetail components
+- Created parent-child component relationship
+- Demonstrated props system with image components
+- Set up component communication patterns
 
 ### Next Topics
-- [ ] Section 5: Building Reusable Components
 - [ ] Section 6: State Management
 - [ ] Section 7: How to Handle Screen Layout
 - [ ] Section 8: Restaurant Search App
@@ -156,3 +160,58 @@ App.js
 - Supports flexbox for layout
 - Margins and padding follow standard CSS-like properties
 - Styles can be applied directly or through StyleSheet objects 
+
+## Building Reusable Components
+
+### Parent-Child Component Pattern
+1. **Parent Component (ImageScreen)**
+   ```javascript
+   import ImageDetail from "../components/ImageDetail";
+   
+   const ImageScreen = () => {
+     return (
+       <View>
+         <ImageDetail 
+           title="Forest" 
+           imageSource={require("../../assets/forest.jpg")} 
+         />
+         {/* More ImageDetail components */}
+       </View>
+     );
+   };
+   ```
+
+2. **Child Component (ImageDetail)**
+   ```javascript
+   const ImageDetail = props => {
+     return (
+       <View>
+         <Text>{props.title}</Text>
+       </View>
+     );
+   };
+   ```
+
+### Props System
+- **Props**: System for passing data from a parent to child
+- **Key Concepts**:
+  - Props are one-way communication (parent → child)
+  - Props can include any data type (strings, numbers, objects, functions)
+  - Child components can't modify props directly
+  - Props are used for component configuration
+
+### Component Reuse Benefits
+1. **DRY (Don't Repeat Yourself)**
+   - Create component once, use it multiple times
+   - Consistent styling and behavior
+   - Easier maintenance
+
+2. **Configuration through Props**
+   - Same component structure
+   - Different content/data
+   - Flexible and adaptable
+
+3. **Maintainability**
+   - Changes in one place affect all instances
+   - Consistent behavior across the app
+   - Easier testing and debugging 
