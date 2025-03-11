@@ -2,6 +2,28 @@
 
 This repository contains examples and notes from a React Native course from Udemy covering fundamental concepts and navigation.
 
+## Course Progress Notes
+
+### Section Progress
+- [x] Section 1-4: Completed
+  - Basic Component Structure
+  - Navigation Setup
+  - List Building
+  - Button & TouchableOpacity Components
+
+### Latest Changes (Date: Current)
+- Implemented basic navigation between screens
+- Created HomeScreen with navigation buttons
+- Built a list demo using FlatList
+- Added comprehensive documentation
+
+### Next Topics
+- [ ] Section 5: Building Reusable Components
+- [ ] Section 6: State Management
+- [ ] Section 7: How to Handle Screen Layout
+- [ ] Section 8: Restaurant Search App
+- [ ] Section 9: Using Outside API's
+
 ## Environment Management
 
 ### Starting and Stopping the Development Environment
