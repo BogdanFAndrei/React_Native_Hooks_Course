@@ -1,6 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
+/**
+ * ListScreen demonstrates the usage of FlatList component in React Native.
+ * Shows how to render a scrollable list of items with consistent styling.
+ * 
+ * Features:
+ * - Uses FlatList for efficient list rendering
+ * - Demonstrates key extraction
+ * - Shows how to style list items
+ * - Handles both horizontal and vertical scroll indicators
+ * 
+ * @component
+ * @returns {React.ReactElement} A screen showing a list of friends with their ages
+ */
 const ListScreen = () => {
   const friends = [
     { name: 'Friend #1', age: '20' },
