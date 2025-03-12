@@ -1,6 +1,13 @@
 import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 
+/**
+ * ComponentsScreen demonstrates basic React Native component usage.
+ * Shows how to use Text components, styling, and variable interpolation in JSX.
+ * 
+ * @component
+ * @returns {React.ReactElement} A screen showing basic text styling and variable usage
+ */
 const ComponentsScreen = () => {
   const name = 'Bogdan';
 
