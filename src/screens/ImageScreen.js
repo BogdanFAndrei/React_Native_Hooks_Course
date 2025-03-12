@@ -2,6 +2,18 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import ImageDetail from '../components/ImageDetail';
 
+/**
+ * ImageScreen demonstrates component reuse and props system in React Native.
+ * Uses a custom ImageDetail component to display multiple images with titles and scores.
+ * 
+ * Features:
+ * - Demonstrates component reusability
+ * - Shows props passing (title, image source, and score)
+ * - Illustrates parent-child component relationship
+ * 
+ * @component
+ * @returns {React.ReactElement} A screen showing multiple image cards with details
+ */
 const ImageScreen = () => {
   return (
     <View style={styles.container}>
