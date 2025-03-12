@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
+/**
+ * CounterScreen demonstrates basic state management in React Native using useState hook.
+ * Provides buttons to increment and decrement a counter value.
+ * 
+ * Features:
+ * - Uses useState hook for state management
+ * - Shows how to update state safely
+ * - Demonstrates button press handlers
+ * - Displays current state value
+ * 
+ * @component
+ * @returns {React.ReactElement} A screen with increment/decrement buttons and counter display
+ */
 const CounterScreen = () => {
   const [counter, setCounter] = useState(0);
 
