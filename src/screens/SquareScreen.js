@@ -13,9 +13,13 @@ const reducer = (state, action) => {
 
             return {...state, red: state.red + action.amount };
         case 'green':
+            return { ...state, green: state.green + action.amount };
         case 'blue':
+            return {...state, blue: state.blue + action.amount};
         default:
+            return state;
     }
+
 }
 
 
@@ -41,7 +45,7 @@ const SquareScreen = () => {
            <ColorCounter  
                 onIncrease={() => }
                 onDecrease={() => } 
-                color={"Blue"} 
+                color={"Bluee"} 
             />
            <View style={{ height: 150, width: 150, backgroundColor: `rgb(${red}, ${green}, ${blue})` }} />
         </View>
