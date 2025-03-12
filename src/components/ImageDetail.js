@@ -11,6 +11,12 @@ const ImageDetail = ({ imageSource, title, score }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+  const styles = StyleSheet.create({
+  container: {
+    borderWidth: 1,
+    borderColor: 'black',
+    margin: 10
+  }
+});
 
 export default ImageDetail;
