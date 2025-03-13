@@ -8,8 +8,12 @@ const MAX_VALUE = 255;
 
 /**
  * Reducer function for managing RGB color state.
- * Handles color value updates while maintaining state immutability.
- * Ensures color values stay within valid RGB range (0-255).
+ * Follows React community conventions for reducers:
+ * - Never mutates state directly
+ * - Always returns a new state object
+ * - Uses switch statement for action handling
+ * - Has a default case to handle unknown actions
+ * - Keeps logic simple and predictable
  * 
  * @param {Object} state - Current state object containing RGB values
  * @param {Object} action - Action object describing the color change
@@ -44,7 +48,11 @@ const reducer = (state, action) => {
 
 /**
  * SquareScreen demonstrates advanced state management using useReducer hook.
- * Allows users to adjust RGB values to create custom colors.
+ * Implements community best practices for state management:
+ * - Uses reducer pattern for complex state logic
+ * - Separates state logic from UI components
+ * - Implements bounds checking for RGB values (0-255)
+ * - Provides clear visual feedback
  * 
  * Features:
  * - Uses useReducer for complex state management
@@ -56,26 +64,26 @@ const reducer = (state, action) => {
  * @returns {React.ReactElement} A screen with RGB adjustment controls and color preview
  */
 const SquareScreen = () => {
-    const [state, dispatch] = useReducer(reducer, {red: 0, green: 0, blue: 0});
+    const [state, runMyReducer] = useReducer(reducer, {red: 0, green: 0, blue: 0});
     const { red, green, blue } = state;
     
     return (    
         <View>
            <ColorCounter 
-                onIncrease={() => dispatch({ colorToChange: 'red', amount: COLOR_INCREMENT })}
-                onDecrease={() => dispatch({ colorToChange: 'red', amount: -1 * COLOR_INCREMENT })}
+                onIncrease={() => runMyReducer({ colorToChange: 'red', amount: COLOR_INCREMENT })}
+                onDecrease={() => runMyReducer({ colorToChange: 'red', amount: -1 * COLOR_INCREMENT })}
                 color="Red"
             />
            <Text style={styles.textStyle}>Red: {red}</Text>
            <ColorCounter  
-                onIncrease={() => dispatch({ colorToChange: 'green', amount: COLOR_INCREMENT })}
-                onDecrease={() => dispatch({ colorToChange: 'green', amount: -1 * COLOR_INCREMENT })}
+                onIncrease={() => runMyReducer({ colorToChange: 'green', amount: COLOR_INCREMENT })}
+                onDecrease={() => runMyReducer({ colorToChange: 'green', amount: -1 * COLOR_INCREMENT })}
                 color="Green"
             />
            <Text style={styles.textStyle}>Green: {green}</Text>
            <ColorCounter  
-                onIncrease={() => dispatch({ colorToChange: 'blue', amount: COLOR_INCREMENT })}
-                onDecrease={() => dispatch({ colorToChange: 'blue', amount: -1 * COLOR_INCREMENT })}
+                onIncrease={() => runMyReducer({ colorToChange: 'blue', amount: COLOR_INCREMENT })}
+                onDecrease={() => runMyReducer({ colorToChange: 'blue', amount: -1 * COLOR_INCREMENT })}
                 color="Blue"
             />
            <Text style={styles.textStyle}>Blue: {blue}</Text>
