@@ -11,17 +11,22 @@ This repository contains examples and notes from a React Native course from Udem
   - Navigation Setup
   - List Building
   - Button & TouchableOpacity Components
-- [🔄] Section 5: Building Reusable Components (In Progress)
+- [x] Section 5: Building Reusable Components (Completed)
   - Understanding Parent-Child Relationships
   - Props System Implementation
   - Component Reuse Patterns
   - Image Display and Props
   - Multiple Props Communication
+- [🔄] Section 6: State Management (In Progress)
+  - Counter Screen Implementation
+  - Color Generator Screen
+  - Square Screen with RGB Controls
 
-### Latest Changes (Date: Current)
+### Latest Changes (Date: March 12, 2024)
 
-- Added score prop to demonstrate multiple props passing
-- Set up Prettier for consistent code formatting
+- Added SquareScreen for RGB color control demonstration
+- Implemented ColorScreen with random color generation
+- Added CounterScreen to demonstrate state management
 - Previous accomplishments:
   - Implemented ImageScreen with reusable ImageDetail components
   - Created parent-child component relationship
@@ -61,7 +66,6 @@ const ImageDetail = props => {
 
 ### Next Topics
 
-- [ ] Section 6: State Management
 - [ ] Section 7: How to Handle Screen Layout
 - [ ] Section 8: Restaurant Search App
 - [ ] Section 9: Using Outside API's
@@ -267,3 +271,15 @@ App.js
    - Changes in one place affect all instances
    - Consistent behavior across the app
    - Easier testing and debugging
+
+## Screen Navigation Map
+
+The app includes the following screens:
+
+1. **HomeScreen**: Main entry point and navigation hub
+2. **ComponentsScreen**: Demonstrates basic component usage
+3. **ListScreen**: Shows FlatList implementation
+4. **ImageScreen**: Demonstrates reusable components with props
+5. **CounterScreen**: Shows state management with a counter
+6. **ColorScreen**: Demonstrates random color generation
+7. **SquareScreen**: Advanced state management with RGB controls
