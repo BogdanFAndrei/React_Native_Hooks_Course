@@ -2,18 +2,14 @@ import React, { useReducer } from 'react';
 import { View, Button, StyleSheet,Text } from 'react-native';
 import ColorCounter from '../components/ColorCounter';
 
-const COLOR_INCREMENT = 20;
+const COLOR_INCREMENT = 15;
 const MIN_VALUE = 0;
 const MAX_VALUE = 255;
 
 /**
  * Reducer function for managing RGB color state.
- * Follows React community conventions for reducers:
- * - Never mutates state directly
- * - Always returns a new state object
- * - Uses switch statement for action handling
- * - Has a default case to handle unknown actions
- * - Keeps logic simple and predictable
+ * Handles color value updates while maintaining state immutability.
+ * Ensures color values stay within valid RGB range (0-255).
  * 
  * @param {Object} state - Current state object containing RGB values
  * @param {Object} action - Action object describing the color change
@@ -23,23 +19,23 @@ const MAX_VALUE = 255;
  */
 const reducer = (state, action) => {
     // state === {red:number, green: number, blue:number}
-    // action === { colorToChange : 'red' || 'green'|| 'blue', amount: 15 || -15  }
+    // action === { type : 'change_red' || 'change_green'|| 'change_blue', payload: 15 || -15  }
     
-    switch (action.colorToChange) {
-        case 'red':
+    switch (action.type) {
+        case 'change_red':
             return {
                 ...state,
-                red: Math.min(MAX_VALUE, Math.max(MIN_VALUE, state.red + action.amount))
+                red: Math.min(MAX_VALUE, Math.max(MIN_VALUE, state.red + action.payload))
             };
-        case 'green':
+        case 'change_green':
             return {
                 ...state,
-                green: Math.min(MAX_VALUE, Math.max(MIN_VALUE, state.green + action.amount))
+                green: Math.min(MAX_VALUE, Math.max(MIN_VALUE, state.green + action.payload))
             };
-        case 'blue':
+        case 'change_blue':
             return {
                 ...state,
-                blue: Math.min(MAX_VALUE, Math.max(MIN_VALUE, state.blue + action.amount))
+                blue: Math.min(MAX_VALUE, Math.max(MIN_VALUE, state.blue + action.payload))
             };
         default:
             return state;
@@ -48,11 +44,7 @@ const reducer = (state, action) => {
 
 /**
  * SquareScreen demonstrates advanced state management using useReducer hook.
- * Implements community best practices for state management:
- * - Uses reducer pattern for complex state logic
- * - Separates state logic from UI components
- * - Implements bounds checking for RGB values (0-255)
- * - Provides clear visual feedback
+ * Allows users to adjust RGB values to create custom colors.
  * 
  * Features:
  * - Uses useReducer for complex state management
@@ -70,20 +62,20 @@ const SquareScreen = () => {
     return (    
         <View>
            <ColorCounter 
-                onIncrease={() => runMyReducer({ colorToChange: 'red', amount: COLOR_INCREMENT })}
-                onDecrease={() => runMyReducer({ colorToChange: 'red', amount: -1 * COLOR_INCREMENT })}
+                onIncrease={() => runMyReducer({ type: 'change_red', payload: COLOR_INCREMENT })}
+                onDecrease={() => runMyReducer({ type: 'change_red', payload: -1 * COLOR_INCREMENT })}
                 color="Red"
             />
            <Text style={styles.textStyle}>Red: {red}</Text>
            <ColorCounter  
-                onIncrease={() => runMyReducer({ colorToChange: 'green', amount: COLOR_INCREMENT })}
-                onDecrease={() => runMyReducer({ colorToChange: 'green', amount: -1 * COLOR_INCREMENT })}
+                onIncrease={() => runMyReducer({ type: 'change_green', payload: COLOR_INCREMENT })}
+                onDecrease={() => runMyReducer({ type: 'change_green', payload: -1 * COLOR_INCREMENT })}
                 color="Green"
             />
            <Text style={styles.textStyle}>Green: {green}</Text>
            <ColorCounter  
-                onIncrease={() => runMyReducer({ colorToChange: 'blue', amount: COLOR_INCREMENT })}
-                onDecrease={() => runMyReducer({ colorToChange: 'blue', amount: -1 * COLOR_INCREMENT })}
+                onIncrease={() => runMyReducer({ type: 'change_blue', payload: COLOR_INCREMENT })}
+                onDecrease={() => runMyReducer({ type: 'change_blue', payload: -1 * COLOR_INCREMENT })}
                 color="Blue"
             />
            <Text style={styles.textStyle}>Blue: {blue}</Text>
