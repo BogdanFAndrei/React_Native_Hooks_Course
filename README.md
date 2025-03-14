@@ -1,285 +1,457 @@
-# React Native Tutorial Notes
+## Running the React Native Bundler
 
-This repository contains examples and notes from a React Native course from Udemy covering fundamental concepts and navigation.
+- To stop the bundler, press **Control + C** in the terminal.
+- To restart, run `npm start` in the project directory.
+- Scan the QR code on your mobile device to reload the app.
 
-## Course Progress Notes
+---
 
-### Section Progress
+## React Any Component File
 
-- [x] Section 1-4: Completed
-  - Basic Component Structure
-  - Navigation Setup
-  - List Building
-  - Button & TouchableOpacity Components
-- [x] Section 5: Building Reusable Components (Completed)
-  - Understanding Parent-Child Relationships
-  - Props System Implementation
-  - Component Reuse Patterns
-  - Image Display and Props
-  - Multiple Props Communication
-- [🔄] Section 6: State Management (In Progress)
-  - Counter Screen Implementation
-  - Color Generator Screen
-  - Square Screen with RGB Controls
+### Part 1: Importing Libraries
 
-### Latest Changes (Date: March 12, 2024)
+- Import necessary libraries to create a React Native component.
 
-- Added SquareScreen for RGB color control demonstration
-- Implemented ColorScreen with random color generation
-- Added CounterScreen to demonstrate state management
-- Previous accomplishments:
-  - Implemented ImageScreen with reusable ImageDetail components
-  - Created parent-child component relationship
-  - Demonstrated props system with image components
+```jsx
+import React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+```
 
-### Props Examples
+### Part 2: Creating a Component
 
-```javascript
-// Parent Component (ImageScreen)
-<ImageDetail title="Forest" imageSource={require('../../assets/forest.jpg')} score={9} />;
+- A function that returns **JSX** (similar to HTML), defining what should be displayed on the screen.
 
-// Child Component (ImageDetail)
-const ImageDetail = props => {
+```jsx
+const MyComponent = () => {
   return (
-    <View>
-      <Image source={props.imageSource} />
-      <Text>{props.title}</Text>
-      <Text>Image Score - {props.score}</Text>
+    <View style={styles.container}>
+      <Text>Hello, World!</Text>
     </View>
   );
 };
 ```
 
-### Code Formatting Setup
+### Part 3: Styling a Component
 
-- Added Prettier for consistent code style
-- Configuration in `.prettierrc`:
-  ```json
-  {
-    "semi": true,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5"
-  }
-  ```
-- Format command: `npm run format`
+- Use `StyleSheet.create()` to define styles for the component.
+- Alternatively, styles can be passed directly into elements.
 
-### Next Topics
-
-- [ ] Section 7: How to Handle Screen Layout
-- [ ] Section 8: Restaurant Search App
-- [ ] Section 9: Using Outside API's
-
-## Environment Management
-
-### Starting and Stopping the Development Environment
-
-```bash
-# To stop the React Native bundler
-Control + C in terminal
-
-# To restart the development server
-npm start
-# Then scan the QR code on your mobile device
+```jsx
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f8f8f8',
+  },
+});
 ```
 
-## React Component Structure
+### Part 4: Exporting a Component
 
-### 1. Basic Component Structure
+- Allows the component to be used elsewhere in the project.
 
-A React Native component consists of four main parts:
-
-1. **Import Libraries**
-
-   ```javascript
-   import React from 'react';
-   import { Text, StyleSheet, View } from 'react-native';
-   ```
-
-2. **Create Component**
-
-   ```javascript
-   const MyComponent = () => {
-     return <Text>Some JSX content</Text>;
-   };
-   ```
-
-3. **Create StyleSheet**
-
-   ```javascript
-   const styles = StyleSheet.create({
-     text: {
-       fontSize: 30,
-     },
-   });
-   ```
-
-4. **Export Component**
-   ```javascript
-   export default MyComponent;
-   ```
-
-### 2. Primitive Elements
-
-- **Text**: Displays text content (required for any text display)
-- **View**: Container for grouping elements (similar to div)
-- **Image**: Displays images
-- **Button**: Creates a pressable button with built-in feedback
-
-## JSX Rules and Best Practices
-
-1. JSX elements can be nested like HTML
-2. Configure elements using 'props'
-3. Reference JavaScript variables using curly braces: `{variableName}`
-4. Cannot display JavaScript objects directly in JSX
-5. Can assign JSX to variables and display them
-6. Multi-line JSX must either:
-   - Start on the same line as return statement, OR
-   - Be wrapped in parentheses
-
-## List Building with FlatList
-
-### FlatList Component
-
-- Efficiently renders scrollable lists
-- Required props:
-  - `data`: Array of data to render
-  - `renderItem`: Function to render each item
-
-```javascript
-<FlatList
-  data={arrayOfData}
-  renderItem={({ item }) => <Text>{item.name}</Text>}
-  keyExtractor={item => item.id}
-  showsHorizontalScrollIndicator={false}
-/>
-```
-
-### Key Properties
-
-Two ways to handle keys:
-
-1. Add key property directly to data
-2. Use `keyExtractor` prop (preferred method)
-
-## Navigation
-
-### Navigation Setup
-
-- Uses 'react-navigation' library
-- Configured in App.js using StackNavigator
-
-### Navigation Components
-
-1. **Button**
-
-   ```javascript
-   <Button title="Go to Components Demo" onPress={() => navigation.navigate('Components')} />
-   ```
-
-2. **TouchableOpacity**
-   ```javascript
-   <TouchableOpacity onPress={() => navigation.navigate('List')}>
-     <Text>Go to List Demo</Text>
-   </TouchableOpacity>
-   ```
-
-Key differences:
-
-- Button: Simple, pre-styled component
-- TouchableOpacity: More customizable, can wrap any elements
-
-## Project Structure
+```jsx
+export default MyComponent;
 
 ```
-src/
-  ├── screens/
-  │   ├── HomeScreen.js
-  │   ├── ComponentsScreen.js
-  │   └── ListScreen.js
-  └── components/
-App.js
+
+---
+
+## React Native Elements
+
+### Primitive Elements
+
+| Element | Description |
+| --- | --- |
+| **Text** | Displays text content. All text must be within a `<Text>` component. |
+| **View** | A general-purpose container for grouping elements or styling.`<View>` |
+| **Image** | Displays an image.`<ImageDetail>` |
+| **Button** | Displays a pressable button that provides feedback.`<Button>` |
+
+---
+
+## JSX Rules
+
+1. JSX resembles HTML and allows assembling different elements.
+2. Elements can be configured using **props**.
+3. JavaScript variables can be referenced inside JSX using curly braces `{}`.
+
+```jsx
+const name = "React Native";
+return <Text>Welcome to {name}!</Text>;
 ```
 
-## Navigation Flow
+1. Objects cannot be displayed inside JSX directly.
+2. JSX elements can be assigned to variables and reused.
+3. Multi-line JSX blocks must:
+    - Open on the same line as `return`, or
+    - Be wrapped in parentheses `()`.
 
-- App starts at the Home screen (configured in App.js)
-- Navigation between screens using the `navigation.navigate()` method
-- Automatic back button provided by React Navigation
+```jsx
+return (
+  <View>
+    <Text>Hello</Text>
+    <Text>World!</Text>
+  </View>
+);
+```
 
-## Styling
+---
 
-- Uses StyleSheet.create() for style validation
-- Supports flexbox for layout
-- Margins and padding follow standard CSS-like properties
-- Styles can be applied directly or through StyleSheet objects
+## FlatList Component
 
-## Building Reusable Components
+- Converts an array into a list of elements.
+- **Required Props:**
+    - `data`: The array of data.
+    - `renderItem`: Function that transforms each item into an element.
+- **Keys for Optimization:**
+    - Assign a `key` prop (must be a **unique string**).
+    - Use `keyExtractor` for automatic key assignment.
+- To **hide the scroll bar**, use `showsHorizontalScrollIndicator={false}`.
 
-### Parent-Child Component Pattern
+```jsx
+import { FlatList, Text, View } from 'react-native';
 
-1. **Parent Component (ImageScreen)**
+const data = [
+  { id: '1', title: 'Item 1' },
+  { id: '2', title: 'Item 2' },
+  { id: '3', title: 'Item 3' },
+];
 
-   ```javascript
-   import ImageDetail from '../components/ImageDetail';
+const renderItem = ({ item }) => (
+  <Text>{item.title}</Text>
+);
 
-   const ImageScreen = () => {
-     return (
-       <View>
-         <ImageDetail title="Forest" imageSource={require('../../assets/forest.jpg')} />
-         {/* More ImageDetail components */}
-       </View>
-     );
-   };
-   ```
+return (
+  <FlatList
+    data={data}
+    renderItem={renderItem}
+    keyExtractor={item => item.id}
+  />
+);
+```
 
-2. **Child Component (ImageDetail)**
-   ```javascript
-   const ImageDetail = props => {
-     return (
-       <View>
-         <Text>{props.title}</Text>
-       </View>
-     );
-   };
-   ```
+---
 
-### Props System
+## Navigation & Buttons
 
-- **Props**: System for passing data from a parent to child
-- **Key Concepts**:
-  - Props are one-way communication (parent → child)
-  - Props can include any data type (strings, numbers, objects, functions)
-  - Child components can't modify props directly
-  - Props are used for component configuration
+### Button Types
 
-### Component Reuse Benefits
+![image.png](attachment:fa751dbf-7e00-42a9-b846-ee9c94cd684c:image.png)
 
-1. **DRY (Don't Repeat Yourself)**
+| Type | Description |
+| --- | --- |
+| Button | Simple, built-in button component. No closing tag needed. |
+| **TouchableOpacity** | Customizable button that can wrap other elements. |
 
-   - Create component once, use it multiple times
-   - Consistent styling and behavior
-   - Easier maintenance
+```jsx
+import { Button } from 'react-native';
 
-2. **Configuration through Props**
+<Button title="Click Me" onPress={() => alert('Button Pressed!')} />;
+```
 
-   - Same component structure
-   - Different content/data
-   - Flexible and adaptable
+```jsx
+import { TouchableOpacity, Text } from 'react-native';
 
-3. **Maintainability**
-   - Changes in one place affect all instances
-   - Consistent behavior across the app
-   - Easier testing and debugging
+<TouchableOpacity onPress={() => alert('Tapped!')}>
+  <Text>Tap Me</Text>
+</TouchableOpacity>;
+```
 
-## Screen Navigation Map
+### Navigation (React Navigation Stack)
 
-The app includes the following screens:
+- Used to navigate between different screens in the app.
 
-1. **HomeScreen**: Main entry point and navigation hub
-2. **ComponentsScreen**: Demonstrates basic component usage
-3. **ListScreen**: Shows FlatList implementation
-4. **ImageScreen**: Demonstrates reusable components with props
-5. **CounterScreen**: Shows state management with a counter
-6. **ColorScreen**: Demonstrates random color generation
-7. **SquareScreen**: Advanced state management with RGB controls
+---
+
+## Props vs. State
+
+1. **Props**: Used to pass data **from parent to child**.
+
+```jsx
+const Greeting = (props) => {
+  return <Text>Hello, {props.name}!</Text>;
+};
+
+<Greeting name="Alice" />;
+```
+
+1. **State**: Tracks data that **changes over time** and triggers re-renders.
+
+```jsx
+import { useState } from 'react';
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <View>
+      <Text>Count: {count}</Text>
+      <Button title="Increase" onPress={() => setCount(count + 1)} />
+    </View>
+  );
+};
+```
+
+### State Rules:
+
+- Never modify state variables directly; always use the setter function.
+- State variables can store **numbers, strings, arrays, objects**, etc.
+- When a component re-renders, all its children also re-render.
+- A **stable state variable** can be passed to a child as **props**.
+
+### Reducers (Community Convention)
+
+- Instead of `{colorToChange: 'red', amount: 15}`
+- Use `{type: 'change_red', payload: 15}`
+
+```jsx
+import React, { useReducer } from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'increment':
+            return state + 1;
+        case 'decrement':
+            return state - 1;
+        default:
+            return state;
+    }
+};
+const CounterScreen = () => {
+  const [state, dispatch] = useReducer(reducer, 0);
+
+  return (
+    <View>
+      <Button
+        style={styles.buttonContainer}
+        title="Increase"
+        onPress={() => dispatch({ type: 'increment' })}
+      />
+      <Button
+        style={styles.buttonContainer}
+        title="Decrease"
+        onPress={() => dispatch({ type: 'decrement' })}
+      />
+
+      <Text style={styles.text}>Current Counter {state}</Text>
+    </View>
+  );
+};
+```
+
+---
+
+## Password Input
+
+- Use `secureTextEntry={true}` to hide password characters in `TextInput`.
+
+```jsx
+import { TextInput } from 'react-native';
+
+<TextInput secureTextEntry={true} placeholder="Enter password" />;
+```
+
+---
+
+## Layout Systems
+
+### **Box Model** (For positioning a single element)
+
+- **Height/Width**: Defines size.
+- **Spacing Properties:**
+    - `margin`: Sets margin on all sides.
+    - `marginVertical`: Margin on top and bottom.
+    - `marginHorizontal`: Margin on left and right.
+    - `padding`: Sets padding on all sides.
+    - `borderWidth`: Defines border thickness.
+
+```jsx
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+const BoxModelExample = () => {
+  return (
+     <View style={styles.box}>
+       <Text>Box Model</Text>
+     </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  box: {
+    width: 150,
+    height: 150,
+    backgroundColor: 'skyblue',
+    padding: 20, // Adds space inside the box
+    margin: 20,  // Adds space outside the box
+    borderWidth: 5, // Adds a border around the box
+    borderColor: 'blue',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default BoxModelExample;
+
+```
+
+### **Flexbox** (For positioning multiple elements within a parent)
+
+- **Default alignment:** `alignItems: 'stretch'` **(Parent behaviour)**
+- **Other alignments:**
+    - `alignItems: 'flex-start'` → Align items to the left/top.
+    - `alignItems: 'center'` → Center items.
+    - `alignItems: 'flex-end'` → Align items to the right/bottom.
+- **Flex Direction (Parent behaviour) :**
+    - Default: `column` (Stacks children top to bottom)
+    - Use `row` for horizontal alignment
+- Justify Content (Align Items Vertically in Column / Horizontally in Row) **(Parent behaviour)** :
+    - `justifyContent: 'flex-start'` → Items start from the top (or left if `row`).
+    - `justifyContent: 'center'` → Items are centered along the main axis.
+    - `justifyContent: 'flex-end'` → Items are pushed to the bottom (or right if `row`).
+    - `justifyContent: 'space-between'` → Items are spaced evenly, with no gaps at the edges.
+    - `justifyContent: 'space-around'` → Items have equal space around them.
+    - `justifyContent: 'space-evenly'` → Items have equal spacing **between** and **at the edges**.
+- Flex Property - (determines how much space an element takes relative to its siblings) **Child behaviour**
+    - `flex: 1` → Takes **equal** space with other `flex: 1` elements.
+    - `flex: 2` → Takes **twice** the space of a `flex: 1` element.
+    - `flex: 4` → Takes **four times** the space of a `flex: 1` element.
+- Align Self —> **(Child Behaviour)**
+    - `alignSelf` **overrides** `alignItems` **for a specific child**.
+    - Useful when you want a single item to be positioned differently.
+- **Align Self Options:**
+    - `alignSelf: 'auto'` (default) - Uses the parent’s `alignItems` setting.
+    - `alignSelf: 'flex-start'` - Aligns the item to the left/top.
+    - `alignSelf: 'center'` -  Centers the item.
+    - `alignSelf: 'flex-end'` - Aligns the item to the right/bottom.
+    - `alignSelf: 'stretch'` - Stretches the item to fill the container.
+
+```jsx
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+const FlexExample = () => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.boxOne}><Text>Child 1</Text></View>
+      <View style={styles.boxTwo}><Text>Ch*ld* 2</Text></View>
+      <View style={styles.boxThree}><Text>Child 3</Text></View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',  // Aligns children horizontally or use column to vertically
+    justifyContent: 'center', // Centers them horizontally
+    alignItems: 'center', // Default alignment for all children
+    backgroundColor: '#f8f8f8',
+  },
+  boxOne: {
+    width: 80,
+    height: 80,
+    backgroundColor: 'skyblue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 5,
+    //alignSelf: 'center', // Overrides alignItems, moves to center
+    // flex: 1, =>  Takes equal space with other flex: 1 elements.
+  },
+    boxTwo: {
+    width: 80,
+    height: 80,
+    backgroundColor: 'skyblue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 5,
+    // flex: 2, => Takes twice the space of a flex: 1 element.
+    //alignSelf: 'flex-end', // Overrides alignItems, moves to bottom/right
+  },
+    boxThree: {
+    width: 80,
+    height: 80,
+    backgroundColor: 'skyblue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 5,
+    // flex: 4, =>  Takes four times the space of a flex: 1 element.
+    // alignSelf: 'flex-start', // Overrides alignItems, moves to top/left
+  },
+});
+
+export default FlexExample;
+
+```
+
+### **Position Property**
+
+The `position` property in React Native determines how an element is placed inside its parent container. The default position is `relative`.
+
+- **Position Values**
+    - **relative** (default) - The element follows the normal layout flow.
+    - **absolute** - The element is positioned relative to its closest positioned ancestor (or the screen if no ancestor has `position: absolute` or `relative`) (Ignored by sibling. Still obeys some flex box rules set by parent)
+    - **Top, Bottom, Left, Right**
+        - **Relative Positioning:** If the element’s position is set to `relative` , the `top` , `bottom` , `left` and `right` properties shift the element from its normal position rather than being placed absolutely within its container
+    - Absolute Fill Objects
+        - An element is positioned absolutely within its parent container, and it is stretched to fill the entire space of its parent.
+        - Using the `position: 'absolute'` style combined with `top`, `bottom`, `left`, and `right` set to `0`, effectively making the element fill the entire parent container.
+        - **!! React native Shortcut** !! to achieve the same result `...Stylesheet.absoluteFillObject`can be used.
+
+```jsx
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+const PositionExample = () => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.box1}>
+        <Text>Relative Box</Text>
+      </View>
+      <View style={styles.box2}>
+        <Text>Absolute Box</Text>
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  box1: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'blue',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  box2: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute', // Overrides normal layout flow
+    top: 50, // Moves 50 units from the top
+    left: 50, // Moves 50 units from the left
+    bottom: 50, // Moves 50 units from the bottom
+    right: 50, // Moves 50 units from the right
+    // This will ensure that the child covers fully the container
+    //position: 'absolute',
+    // top: 0,
+    // bottom: 0,
+    // left: 0,
+    // right: 0,
+    // Or absolute fill can be achieved by using the hard coded object:
+    // ...StyleSheet.absoluteFillObject
+  },
+});
+
+export default PositionExample;
+```
