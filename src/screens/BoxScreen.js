@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: 'black',
         height: 200,
-        flexDirection: 'column',
         alignItems: 'center'
   
 
@@ -23,22 +22,19 @@ const styles = StyleSheet.create({
     textOneStyle: {
         borderWidth: 3,
         borderColor: 'red',
-        flex: 4,
-        alignSelf: 'center'
 
     },
     textTwoStyle: {
         borderWidth: 3,
         borderColor: 'red',
-        flex: 4,
-        alignSelf: 'flex-end'
+        position: 'absolute',
+        fontSize: 18
     
     },
     textThreeStyle: {
         borderWidth: 3,
         borderColor: 'red',
-        flex: 2,
-        alignSelf: 'flex-start'
+
     
 
     },
