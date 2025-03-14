@@ -35,7 +35,12 @@ const styles = StyleSheet.create({
     textThreeStyle: {
         borderWidth: 3,
         borderColor: 'red',
-        top: 10,
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+
 
     
 
